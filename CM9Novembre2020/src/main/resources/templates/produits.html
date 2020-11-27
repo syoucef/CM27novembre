@@ -1,0 +1,140 @@
+<html>
+<html xmlns:th="http://thymeleaf.org">
+<!-- th: -->
+<head>
+    <meta charset="UTF-8">
+    <title>Produits</title>
+
+    <link rel="stylesheet" href="css/css/bootstrap.min.css">
+
+</head>
+<body>
+Je suis dans la vue ....
+
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+<!--Parler du cache pour le désactiver  -->
+
+<!-- Moteur de recherche -->
+
+<div class="container">
+    <div class="pannel panel-primary">
+        <div class="panel-heading"> Liste des produits </div>
+        <!-- toujours pannel-body -->
+        <div class="panel-body">
+        <!-- on va mettre un formulaire .... -->
+            <form th:action="@{/indexpagesameliorepagemotcle}" method="get">
+            <label> Mot clé </label>
+                <input type="text" name="mot">
+                <button type="submit" class="btn btn-primary"> Chercher  </button>
+            </form>
+            <!-- Il faut maintenant récupérer ce mot clé et faire une recherche au nineau du contrôleur -->
+        </div>
+        <div class="panel-body">
+
+            <table class="table" >
+                <tr>
+                    <th> Identifiant </th> <th> Designation </th> <th> Prix </th>
+                </tr>
+
+                <tr th:each="p:${listeProduits}">
+                    <td th:text="${p.id}"> </td>
+                    <td th:text="${p.designatio}"> </td>
+                    <td th:text="${p.prix}"> </td>
+                </tr>
+
+            </table>
+            <ul class="nav nav-pills">
+                <li th:class="${courante==status.index}?'active':'' "  th:each="page, status:${pages}">
+                    <a th:href="@{/indexpagesameliorepage(page=${status.index})}" th:text="${status.index}"> </a>
+                </li>
+            <!--
+            <ul class="nav nav-pills">
+                <li th:class="${courante==status.index}?'active':'' "  th:each="page, status:${pages}">
+                    <a th:href="@{/indexpagesameliorepagemotcle(mot=${mot})}" th:text="${status.index}"> </a>
+                </li>
+                -->
+                <!-- pour afficher les numéro horizontalemnet class="nav nav-pills" .... on a que des zéro
+                ce qu'on veut afficher est l'index de l'élément et pas la valeur ....
+                pour cela on utilise : on déclare une variable status ....et au lieu de :
+                ${page}, on met status.index
+                il rest le lien ....
+                -->
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+<br/> <br/> <br/> <br/> <br/> <br/><br/><br/>
+
+<div class="container">
+    <div class="pannel panel-primary">
+        <div class="panel-heading"> Liste des produits </div>
+        <div class="panel-body">
+
+            <table class="table" >
+                <tr>
+                    <th> Identifiant </th> <th> Designation </th> <th> Prix </th>
+                </tr>
+
+                <tr th:each="p:${listeProduits}">
+                    <td th:text="${p.id}"> </td>
+                    <td th:text="${p.designatio}"> </td>
+                    <td th:text="${p.prix}"> </td>
+                </tr>
+
+            </table>
+
+            <ul class="nav nav-pills">
+                <li th:class="${courante==status.index}?'active':'' "  th:each="page, status:${pages}">
+                    <a th:href="@{/indexpagesameliorepage(page=${status.index})}" th:text="${status.index}"> </a>
+                </li>
+              <!-- pour afficher les numéro horizontalemnet class="nav nav-pills" .... on a que des zéro
+              ce qu'on veut afficher est l'index de l'élément et pas la valeur ....
+              pour cela on utilise : on déclare une variable status ....et au lieu de :
+              ${page}, on met status.index
+              il rest le lien ....
+              -->
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+    <div class="container" >
+        <div class="panel panel-primary" >
+            <div class="panel-heading"> Liste des projets  </div>
+        </div>
+    </div>
+
+
+    <div class="container" >
+      <div class="panel panel-primary" >
+      <div class="panel-heading"> Liste des produits  </div>
+          <div class="panel-body">
+              <table  class="table">
+                  <tr>
+                      <th> Identifiant </th> <th> Designation </th> <th> Prix </th>
+                  </tr>
+                  <tr th:each="p:${listeProduits}">
+                      <td th:text="${p.id}"> </td>
+                      <td th:text="${p.designatio}"> </td>
+                      <td th:text="${p.prix}"> </td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>
